@@ -175,9 +175,6 @@ module OmniAuth
     #
     # @param env [Hash] The Rack environment.
     def call!(env) # rubocop:disable CyclomaticComplexity, PerceivedComplexity
-      puts "🔥🔥🔥🔥-------------"
-      puts "HERE #{env['rack.session']}"
-      puts "🔥🔥🔥🔥-------------"
       unless env['rack.session']
         error = OmniAuth::NoSessionError.new('You must provide a session to use OmniAuth.')
         raise(error)
@@ -185,9 +182,6 @@ module OmniAuth
 
       @env = env
 
-      puts "🔥🔥🔥🔥-------------"
-      puts "HERE2 #{OmniAuth.config.test_mode}"
-      puts "🔥🔥🔥🔥-------------"
 
       warn_if_using_get_on_request_path
 
@@ -201,6 +195,8 @@ module OmniAuth
         puts "options_request? #{options_request?}"
         puts "on_request_path? #{on_request_path?}"
         puts "on_callback_path? #{on_callback_path?}"
+        puts "options[:request_path] #{options[:request_path]}"
+        puts "${script_name}${path_prefix}/${name}" "#{script_name}#{path_prefix}/#{name}"
         puts "respond_to?(:other_phase) #{respond_to?(:other_phase)}"
         puts "OmniAuth.config.allowed_request_methods.include?(request.request_method.downcase.to_sym) #{OmniAuth.config.allowed_request_methods.include?(request.request_method.downcase.to_sym)}"
         puts "🔥🔥🔥🔥-------------"
